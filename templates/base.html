@@ -167,7 +167,7 @@
                         من مشکلات پیچیده کاربران در زمینه طراحی و برنامه نویسی را با توجه به سابقه کاریی که دارم به راحتی برطرف میکنم
                      </p>
                      <div class="button-box d-flex flex-wrap align-items-center">
-                        <a href="#" class="btn tj-btn-secondary">دریافت رزومه <i class="flaticon-download"></i></a>
+                        <a href="{{user_setting.resume.url}}" class="btn tj-btn-secondary">دریافت رزومه <i class="flaticon-download"></i></a>
                         <ul class="ul-reset social-icons">
                            <li>
                               <a href="#"><i class="fa-brands fa-twitter"></i></a>
@@ -207,8 +207,8 @@
                   </div>
                   <div class="col-6 col-lg-3">
                      <div class="funfact-item d-flex flex-column flex-sm-row flex-wrap align-items-center">
-                        <div class="number"><span class="odometer" data-count="1.5">0</span>K</div>
-                        <div class="text">میزان <br>رضایت</div>
+                        <div class="number"><span>10</span></div>
+                        <div class="text">نظرات <br>مشتریان</div>
                      </div>
                   </div>
                   <div class="col-6 col-lg-3">
@@ -400,9 +400,9 @@
                   <div class="portfolio-filter text-center wow fadeInUp" data-wow-delay=".5s">
                      <div class="button-group filter-button-group">
                         <button data-filter="*" class="active">همه</button>
-                        <button data-filter=".uxui">UX/UI</button>
-                        <button data-filter=".branding">برندینگ</button>
-                        <button data-filter=".mobile-app">اپیکیشن</button>
+                        <button data-filter=".sazmani">سازمانی</button>
+                        <button data-filter=".shopping">فروشگاهی</button>
+                        <button data-filter=".amoozeshi">آموزشی</button>
                         <div class="active-bg"></div>
                      </div>
                   </div>
@@ -410,19 +410,22 @@
                   <div class="portfolio-box wow fadeInUp" data-wow-delay=".6s">
                      <div class="portfolio-sizer"></div>
                      <div class="gutter-sizer"></div>
-                     <div class="portfolio-item branding">
-                        <div class="image-box">
-                           <img src="assets/img/portfolio/2.jpg" alt="">
-                        </div>
-                        <div class="content-box">
-                           <h3 class="portfolio-title">دیلویت</h3>
-                           <p>پروژه ای در مورد دقت و اطلاعات بالا بود.</p>
-                           <i class="flaticon-up-right-arrow"></i>
-                           <button data-mfp-src="#portfolio-wrapper" class="portfolio-link modal-popup"></button>
-                        </div>
-                     </div>
-                     <div class="portfolio-item uxui">
-                         {% for project in projects %}
+{#                     <div class="portfolio-item sazmani">#}
+{#                         {% for project in sazmani_project %}#}
+{##}
+{#                        <div class="image-box">#}
+{#                           <img src="{{ project.image_1.url}}" alt="">#}
+{#                        </div>#}
+{#                        <div class="content-box">#}
+{#                           <h3 class="portfolio-title">{{ project.project_title}}</h3>#}
+{#                           <p>{{ project.summary}}</p>#}
+{#                           <i class="flaticon-up-right-arrow"></i>#}
+{#                           <button data-mfp-src="#portfolio-wrapper" class="portfolio-link modal-popup"></button>#}
+{#                        </div>#}
+{#                         {% endfor %}#}
+{#                     </div>#}
+                     <div class="portfolio-item sazmani">
+                         {% for project in sazmani_project %}
                         <div class="image-box">
                            <img src="{{ project.image_1.url}}" alt="">
                         </div>
@@ -436,28 +439,39 @@
 
                      </div>
                       {% endfor %}
-                     <div class="portfolio-item mobile-app">
+                     <div class="portfolio-item shopping">
+                         {% for project in shopping_project %}
+
+
+
                         <div class="image-box">
-                           <img src="assets/img/portfolio/3.jpg" alt="">
+                           <img src="{{ project.image_1.url}}" alt="">
                         </div>
                         <div class="content-box">
-                           <h3 class="portfolio-title">سباستین</h3>
-                           <p>پروژه ای در مورد دقت و اطلاعات بالا بود.</p>
+                           <h3 class="portfolio-title">{{ project.project_title }}</h3>
+                           <p>{{ project.summary}}</p>
                            <i class="flaticon-up-right-arrow"></i>
                            <button data-mfp-src="#portfolio-wrapper" class="portfolio-link modal-popup"></button>
                         </div>
                      </div>
-                     <div class="portfolio-item branding">
+
+
+                      <div class="portfolio-item amoozeshi">
+                         {% for project in amoozeshi_project  %}
+
                         <div class="image-box">
-                           <img src="assets/img/portfolio/4.jpg" alt="">
+                           <img src="{{ project.image_1.url}}" alt="">
                         </div>
                         <div class="content-box">
-                           <h3 class="portfolio-title">موچینکس</h3>
-                           <p>پروژه ای در مورد دقت و اطلاعات بالا بود.</p>
+                           <h3 class="portfolio-title">{{ project.project_title}}</h3>
+                           <p>{{ project.summary}}</p>
                            <i class="flaticon-up-right-arrow"></i>
                            <button data-mfp-src="#portfolio-wrapper" class="portfolio-link modal-popup"></button>
                         </div>
+                         {% endfor %}
                      </div>
+
+                  {% endfor %}
                   </div>
                </div>
             </div>
@@ -590,30 +604,20 @@
                   </div>
 
                   <div class="resume-widget">
+                      {% for resume in all_resume %}
+
+
+
                      <div class="resume-item wow fadeInLeft" data-wow-delay=".4s">
-                        <div class="time">2022 - حضور در</div>
-                        <h3 class="resume-title">توسعه دهنده اصلی</h3>
-                        <div class="institute">بروکلی، لندن</div>
+                        <div class="time">{{ resume.wr_title }}</div>
+                        <h3 class="resume-title">{{ resume.wr_company}}</h3>
+                        <div class="institute">{{ resume.wr_task}}</div>
                      </div>
-                     <div class="resume-item wow fadeInLeft" data-wow-delay=".5s">
-                        <div class="time">2021 - 2022</div>
-                        <h3 class="resume-title">فول استک وب دولوپر</h3>
-                        <div class="institute">تهران, گیشای غربی</div>
-                     </div>
-                     <div class="resume-item wow fadeInLeft" data-wow-delay=".6s">
-                        <div class="time">2020 - 2021</div>
-                        <h3 class="resume-title"> طراحی UI </h3>
-                        <div class="institute">خانه رویایی, وین</div>
-                     </div>
-                     <div class="resume-item wow fadeInLeft" data-wow-delay=".7s">
-                        <div class="time">2018 - 2020</div>
-                        <h3 class="resume-title">طراحی گرافیکی</h3>
-                        <div class="institute">ادویسل, واشنگتن</div>
-                     </div>
+                     {% endfor %}
                   </div>
                </div>
 
-               <div class="col-md-6">
+                   <div class="col-md-6">
                   <div class="section-header wow fadeInUp" data-wow-delay=".4s">
                      <h2 class="section-title"><i class="flaticon-graduation-cap"></i> تحصیلات من</h2>
                   </div>
@@ -624,21 +628,7 @@
                         <h3 class="resume-title">دوره برنامه نویسی</h3>
                         <div class="institute">دانشگاه هاروارد</div>
                      </div>
-                     <div class="resume-item wow fadeInRight" data-wow-delay=".6s">
-                        <div class="time">2016 - 2020</div>
-                        <h3 class="resume-title">دوره طراحی گرافیک</h3>
-                        <div class="institute">دانشگاه دانمارک</div>
-                     </div>
-                     <div class="resume-item wow fadeInRight" data-wow-delay=".7s">
-                        <div class="time">2012 - 2015</div>
-                        <h3 class="resume-title">دوره طراحی سایت</h3>
-                        <div class="institute">دانشگاه کالیفورنیا</div>
-                     </div>
-                     <div class="resume-item wow fadeInRight" data-wow-delay=".8s">
-                        <div class="time">2010 - 2011</div>
-                        <h3 class="resume-title">فناوری طراحی</h3>
-                        <div class="institute">دانشکده فنی</div>
-                     </div>
+
                   </div>
                </div>
             </div>
@@ -667,54 +657,54 @@
                      <div class="skill-item wow fadeInUp" data-wow-delay=".3s">
                         <div class="skill-inner">
                            <div class="icon-box">
-                              <img src="assets/img/icons/figma.svg" alt="">
+                              <img src="{% static 'assets/img/icons/icons8-django.svg' %}" alt="">
                            </div>
-                           <div class="number">92%</div>
+                           <div class="number">100%</div>
                         </div>
-                        <p>فیگما</p>
+                        <p>جنگو</p>
                      </div>
                      <div class="skill-item wow fadeInUp" data-wow-delay=".4s">
                         <div class="skill-inner">
                            <div class="icon-box">
-                              <img src="assets/img/icons/sketch.svg" alt="">
+                              <img src="{% static 'assets/img/icons/icons8-python.svg' %}" alt="">
                            </div>
-                           <div class="number">80%</div>
+                           <div class="number">100%</div>
                         </div>
-                        <p>Sketch</p>
+                        <p>پایتون</p>
                      </div>
                      <div class="skill-item wow fadeInUp" data-wow-delay=".5s">
                         <div class="skill-inner">
                            <div class="icon-box">
-                              <img src="assets/img/icons/xd.svg" alt="">
+                              <img src="{% static 'assets/img/icons/icons8-github-logo.svg' %}" alt="">
                            </div>
                            <div class="number">85%</div>
                         </div>
-                        <p>XD</p>
+                        <p>گیت هاب</p>
                      </div>
                      <div class="skill-item wow fadeInUp" data-wow-delay=".6s">
                         <div class="skill-inner">
                            <div class="icon-box">
-                              <img src="assets/img/icons/wp.svg" alt="">
+                              <img src="{% static 'assets/img/icons/icons8-html5.svg' %}" alt="">
                            </div>
-                           <div class="number">99%</div>
+                           <div class="number">70%</div>
                         </div>
-                        <p>وردپرس</p>
+                        <p>اج تی ام ال</p>
                      </div>
                      <div class="skill-item wow fadeInUp" data-wow-delay=".7s">
                         <div class="skill-inner">
                            <div class="icon-box">
-                              <img src="assets/img/icons/react.svg" alt="">
+                              <img src="{% static 'assets/img/icons/icons8-docker.svg' %}" alt="">
                            </div>
-                           <div class="number">89%</div>
+                           <div class="number">50%</div>
                         </div>
-                        <p>ری اکت</p>
+                        <p>داکر</p>
                      </div>
                      <div class="skill-item wow fadeInUp" data-wow-delay=".8s">
                         <div class="skill-inner">
                            <div class="icon-box">
-                              <img src="assets/img/icons/js.svg" alt="">
+                              <img src="{% static 'assets/img/icons/js.svg' %}" alt="">
                            </div>
-                           <div class="number">93%</div>
+                           <div class="number">50%</div>
                         </div>
                         <p>جاوا اسکریپت</p>
                      </div>
@@ -725,224 +715,224 @@
       </section>
       <!-- SKILLS SECTION END -->
 
-      <!-- TESTIMONIAL SECTION START -->
-      <section class="testimonial-section" id="testimonials-section">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-5">
-                  <div class="section-header">
-                     <h2 class="section-title wow fadeInLeft" data-wow-delay=".3s">داستان های مشتری من</h2>
-                     <p class="wow fadeInLeft" data-wow-delay=".4s">توانمندسازی پروژه ها در یک سفر دیجیتال جدید با  خدمات فوق العاده من</p>
-                  </div>
-               </div>
-               <div class="col-lg-7 col-xl-6 offset-xl-1">
-                  <div class="testimonials-widget wow fadeInRight" data-wow-delay=".5s">
-                     <div class="owl-carousel testimonial-carousel">
-                        <div class="testimonial-item">
-                           <div class="top-area d-flex flex-wrap justify-content-between">
-                              <div class="logo-box">
-                                 <img src="assets/img/testimonials/logo/1.png" alt="">
-                              </div>
-                              <div class="image-box">
-                                 <img src="assets/img/testimonials/user/1.jpg" alt="">
-                              </div>
-                           </div>
-                           <div class="icon-box">
-                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_588)"></path>
-                                 <defs>
-                                    <lineargradient id="paint0_linear_263_588" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">
-                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>
-                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>
-                                    </lineargradient>
-                                 </defs>
-                              </svg>
-                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_589)"></path>
-                                 <defs>
-                                    <lineargradient id="paint0_linear_263_589" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">
-                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>
-                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>
-                                    </lineargradient>
-                                 </defs>
-                              </svg>
-                           </div>
-                           <p class="quote">تیلور یک طراح حرفه‌ای است که با ارائه خدمات  حرفه اش واقعاً به تجارت من کمک کرد ارزش به کسب و کار من بخشید</p>
-                           <h4 class="name">براندون فاراستر</h4>
-                           <span class="designation">توسعه دهنده ارشد نرم افزار، Cosmic Sport</span>
-                        </div>
-                        <div class="testimonial-item">
-                           <div class="top-area d-flex flex-wrap justify-content-between">
-                              <div class="logo-box">
-                                 <img src="assets/img/testimonials/logo/2.png" alt="">
-                              </div>
-                              <div class="image-box">
-                                 <img src="assets/img/testimonials/user/2.jpg" alt="">
-                              </div>
-                           </div>
-                           <div class="icon-box">
-                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_511)"></path>
-                                 <defs>
-                                    <lineargradient id="paint0_linear_263_511" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">
-                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>
-                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>
-                                    </lineargradient>
-                                 </defs>
-                              </svg>
-                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_510)"></path>
-                                 <defs>
-                                    <lineargradient id="paint0_linear_263_510" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">
-                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>
-                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>
-                                    </lineargradient>
-                                 </defs>
-                              </svg>
-                           </div>
-                           <p class="quote">تیلور یک طراح حرفه‌ای است که با ارائه خدمات  حرفه اش واقعاً به تجارت من کمک کرد ارزش به کسب و کار من بخشید</p>
-                           <h4 class="name">تام بایلی</h4>
-                           <span class="designation">متخصص SEO، Theme Junction</span>
-                        </div>
-                        <div class="testimonial-item">
-                           <div class="top-area d-flex flex-wrap justify-content-between">
-                              <div class="logo-box">
-                                 <img src="assets/img/testimonials/logo/1.png" alt="">
-                              </div>
-                              <div class="image-box">
-                                 <img src="assets/img/testimonials/user/1.jpg" alt="">
-                              </div>
-                           </div>
-                           <div class="icon-box">
-                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_512)"></path>
-                                 <defs>
-                                    <lineargradient id="paint0_linear_263_512" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">
-                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>
-                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>
-                                    </lineargradient>
-                                 </defs>
-                              </svg>
-                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_513)"></path>
-                                 <defs>
-                                    <lineargradient id="paint0_linear_263_513" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">
-                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>
-                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>
-                                    </lineargradient>
-                                 </defs>
-                              </svg>
-                           </div>
-                           <p class="quote">تیلور یک طراح حرفه‌ای است که با ارائه خدمات  حرفه اش واقعاً به تجارت من کمک کرد ارزش به کسب و کار من بخشید</p>
-                           <h4 class="name">براندون فراستر</h4>
-                           <span class="designation">توسعه دهنده ارشد نرم افزار، Cosmic Sport</span>
-                        </div>
-                        <div class="testimonial-item">
-                           <div class="top-area d-flex flex-wrap justify-content-between">
-                              <div class="logo-box">
-                                 <img src="assets/img/testimonials/logo/2.png" alt="">
-                              </div>
-                              <div class="image-box">
-                                 <img src="assets/img/testimonials/user/2.jpg" alt="">
-                              </div>
-                           </div>
-                           <div class="icon-box">
-                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_514)"></path>
-                                 <defs>
-                                    <lineargradient id="paint0_linear_263_514" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">
-                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>
-                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>
-                                    </lineargradient>
-                                 </defs>
-                              </svg>
-                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_515)"></path>
-                                 <defs>
-                                    <lineargradient id="paint0_linear_263_515" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">
-                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>
-                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>
-                                    </lineargradient>
-                                 </defs>
-                              </svg>
-                           </div>
-                           <p class="quote">تیلور یک طراح حرفه‌ای است که با ارائه خدمات  حرفه اش واقعاً به تجارت من کمک کرد ارزش به کسب و کار من بخشید</p>
-                           <h4 class="name">تام ایلیش</h4>
-                           <span class="designation">متخصص SEO، Theme Junction</span>
-                        </div>
-                        <div class="testimonial-item">
-                           <div class="top-area d-flex flex-wrap justify-content-between">
-                              <div class="logo-box">
-                                 <img src="assets/img/testimonials/logo/1.png" alt="">
-                              </div>
-                              <div class="image-box">
-                                 <img src="assets/img/testimonials/user/1.jpg" alt="">
-                              </div>
-                           </div>
-                           <div class="icon-box">
-                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_512)"></path>
-                                 <defs>
-                                    <lineargradient id="paint0_linear_263_512" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">
-                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>
-                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>
-                                    </lineargradient>
-                                 </defs>
-                              </svg>
-                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_513)"></path>
-                                 <defs>
-                                    <lineargradient id="paint0_linear_263_513" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">
-                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>
-                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>
-                                    </lineargradient>
-                                 </defs>
-                              </svg>
-                           </div>
-                           <p class="quote">تیلور یک طراح حرفه‌ای است که با ارائه خدمات  حرفه اش واقعاً به تجارت من کمک کرد ارزش به کسب و کار من بخشید</p>
-                           <h4 class="name">براندون فراستر</h4>
-                           <span class="designation">توسعه دهنده ارشد نرم افزار، Cosmic Sport</span>
-                        </div>
-                        <div class="testimonial-item">
-                           <div class="top-area d-flex flex-wrap justify-content-between">
-                              <div class="logo-box">
-                                 <img src="assets/img/testimonials/logo/2.png" alt="">
-                              </div>
-                              <div class="image-box">
-                                 <img src="assets/img/testimonials/user/2.jpg" alt="">
-                              </div>
-                           </div>
-                           <div class="icon-box">
-                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_514)"></path>
-                                 <defs>
-                                    <lineargradient id="paint0_linear_263_514" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">
-                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>
-                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>
-                                    </lineargradient>
-                                 </defs>
-                              </svg>
-                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_515)"></path>
-                                 <defs>
-                                    <lineargradient id="paint0_linear_263_515" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">
-                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>
-                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>
-                                    </lineargradient>
-                                 </defs>
-                              </svg>
-                           </div>
-                           <p class="quote">تیلور یک طراح حرفه‌ای است که با ارائه خدمات  حرفه اش واقعاً به تجارت من کمک کرد ارزش به کسب و کار من بخشید</p>
-                           <h4 class="name">تام پیکر</h4>
-                           <span class="designation">متخصص SEO، Theme Junction</span>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </section>
-      <!-- TESTIMONIAL SECTION END -->
+{#      <!-- TESTIMONIAL SECTION START -->#}
+{#      <section class="testimonial-section" id="testimonials-section">#}
+{#         <div class="container">#}
+{#            <div class="row">#}
+{#               <div class="col-lg-5">#}
+{#                  <div class="section-header">#}
+{#                     <h2 class="section-title wow fadeInLeft" data-wow-delay=".3s">داستان های مشتری من</h2>#}
+{#                     <p class="wow fadeInLeft" data-wow-delay=".4s">توانمندسازی پروژه ها در یک سفر دیجیتال جدید با  خدمات فوق العاده من</p>#}
+{#                  </div>#}
+{#               </div>#}
+{#               <div class="col-lg-7 col-xl-6 offset-xl-1">#}
+{#                  <div class="testimonials-widget wow fadeInRight" data-wow-delay=".5s">#}
+{#                     <div class="owl-carousel testimonial-carousel">#}
+{#                        <div class="testimonial-item">#}
+{#                           <div class="top-area d-flex flex-wrap justify-content-between">#}
+{#                              <div class="logo-box">#}
+{#                                 <img src="assets/img/testimonials/logo/1.png" alt="">#}
+{#                              </div>#}
+{#                              <div class="image-box">#}
+{#                                 <img src="assets/img/testimonials/user/1.jpg" alt="">#}
+{#                              </div>#}
+{#                           </div>#}
+{#                           <div class="icon-box">#}
+{#                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">#}
+{#                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_588)"></path>#}
+{#                                 <defs>#}
+{#                                    <lineargradient id="paint0_linear_263_588" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">#}
+{#                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>#}
+{#                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>#}
+{#                                    </lineargradient>#}
+{#                                 </defs>#}
+{#                              </svg>#}
+{#                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">#}
+{#                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_589)"></path>#}
+{#                                 <defs>#}
+{#                                    <lineargradient id="paint0_linear_263_589" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">#}
+{#                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>#}
+{#                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>#}
+{#                                    </lineargradient>#}
+{#                                 </defs>#}
+{#                              </svg>#}
+{#                           </div>#}
+{#                           <p class="quote">تیلور یک طراح حرفه‌ای است که با ارائه خدمات  حرفه اش واقعاً به تجارت من کمک کرد ارزش به کسب و کار من بخشید</p>#}
+{#                           <h4 class="name">براندون فاراستر</h4>#}
+{#                           <span class="designation">توسعه دهنده ارشد نرم افزار، Cosmic Sport</span>#}
+{#                        </div>#}
+{#                        <div class="testimonial-item">#}
+{#                           <div class="top-area d-flex flex-wrap justify-content-between">#}
+{#                              <div class="logo-box">#}
+{#                                 <img src="assets/img/testimonials/logo/2.png" alt="">#}
+{#                              </div>#}
+{#                              <div class="image-box">#}
+{#                                 <img src="assets/img/testimonials/user/2.jpg" alt="">#}
+{#                              </div>#}
+{#                           </div>#}
+{#                           <div class="icon-box">#}
+{#                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">#}
+{#                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_511)"></path>#}
+{#                                 <defs>#}
+{#                                    <lineargradient id="paint0_linear_263_511" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">#}
+{#                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>#}
+{#                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>#}
+{#                                    </lineargradient>#}
+{#                                 </defs>#}
+{#                              </svg>#}
+{#                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">#}
+{#                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_510)"></path>#}
+{#                                 <defs>#}
+{#                                    <lineargradient id="paint0_linear_263_510" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">#}
+{#                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>#}
+{#                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>#}
+{#                                    </lineargradient>#}
+{#                                 </defs>#}
+{#                              </svg>#}
+{#                           </div>#}
+{#                           <p class="quote">تیلور یک طراح حرفه‌ای است که با ارائه خدمات  حرفه اش واقعاً به تجارت من کمک کرد ارزش به کسب و کار من بخشید</p>#}
+{#                           <h4 class="name">تام بایلی</h4>#}
+{#                           <span class="designation">متخصص SEO، Theme Junction</span>#}
+{#                        </div>#}
+{#                        <div class="testimonial-item">#}
+{#                           <div class="top-area d-flex flex-wrap justify-content-between">#}
+{#                              <div class="logo-box">#}
+{#                                 <img src="assets/img/testimonials/logo/1.png" alt="">#}
+{#                              </div>#}
+{#                              <div class="image-box">#}
+{#                                 <img src="assets/img/testimonials/user/1.jpg" alt="">#}
+{#                              </div>#}
+{#                           </div>#}
+{#                           <div class="icon-box">#}
+{#                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">#}
+{#                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_512)"></path>#}
+{#                                 <defs>#}
+{#                                    <lineargradient id="paint0_linear_263_512" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">#}
+{#                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>#}
+{#                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>#}
+{#                                    </lineargradient>#}
+{#                                 </defs>#}
+{#                              </svg>#}
+{#                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">#}
+{#                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_513)"></path>#}
+{#                                 <defs>#}
+{#                                    <lineargradient id="paint0_linear_263_513" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">#}
+{#                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>#}
+{#                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>#}
+{#                                    </lineargradient>#}
+{#                                 </defs>#}
+{#                              </svg>#}
+{#                           </div>#}
+{#                           <p class="quote">تیلور یک طراح حرفه‌ای است که با ارائه خدمات  حرفه اش واقعاً به تجارت من کمک کرد ارزش به کسب و کار من بخشید</p>#}
+{#                           <h4 class="name">براندون فراستر</h4>#}
+{#                           <span class="designation">توسعه دهنده ارشد نرم افزار، Cosmic Sport</span>#}
+{#                        </div>#}
+{#                        <div class="testimonial-item">#}
+{#                           <div class="top-area d-flex flex-wrap justify-content-between">#}
+{#                              <div class="logo-box">#}
+{#                                 <img src="assets/img/testimonials/logo/2.png" alt="">#}
+{#                              </div>#}
+{#                              <div class="image-box">#}
+{#                                 <img src="assets/img/testimonials/user/2.jpg" alt="">#}
+{#                              </div>#}
+{#                           </div>#}
+{#                           <div class="icon-box">#}
+{#                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">#}
+{#                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_514)"></path>#}
+{#                                 <defs>#}
+{#                                    <lineargradient id="paint0_linear_263_514" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">#}
+{#                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>#}
+{#                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>#}
+{#                                    </lineargradient>#}
+{#                                 </defs>#}
+{#                              </svg>#}
+{#                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">#}
+{#                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_515)"></path>#}
+{#                                 <defs>#}
+{#                                    <lineargradient id="paint0_linear_263_515" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">#}
+{#                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>#}
+{#                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>#}
+{#                                    </lineargradient>#}
+{#                                 </defs>#}
+{#                              </svg>#}
+{#                           </div>#}
+{#                           <p class="quote">تیلور یک طراح حرفه‌ای است که با ارائه خدمات  حرفه اش واقعاً به تجارت من کمک کرد ارزش به کسب و کار من بخشید</p>#}
+{#                           <h4 class="name">تام ایلیش</h4>#}
+{#                           <span class="designation">متخصص SEO، Theme Junction</span>#}
+{#                        </div>#}
+{#                        <div class="testimonial-item">#}
+{#                           <div class="top-area d-flex flex-wrap justify-content-between">#}
+{#                              <div class="logo-box">#}
+{#                                 <img src="assets/img/testimonials/logo/1.png" alt="">#}
+{#                              </div>#}
+{#                              <div class="image-box">#}
+{#                                 <img src="assets/img/testimonials/user/1.jpg" alt="">#}
+{#                              </div>#}
+{#                           </div>#}
+{#                           <div class="icon-box">#}
+{#                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">#}
+{#                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_512)"></path>#}
+{#                                 <defs>#}
+{#                                    <lineargradient id="paint0_linear_263_512" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">#}
+{#                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>#}
+{#                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>#}
+{#                                    </lineargradient>#}
+{#                                 </defs>#}
+{#                              </svg>#}
+{#                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">#}
+{#                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_513)"></path>#}
+{#                                 <defs>#}
+{#                                    <lineargradient id="paint0_linear_263_513" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">#}
+{#                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>#}
+{#                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>#}
+{#                                    </lineargradient>#}
+{#                                 </defs>#}
+{#                              </svg>#}
+{#                           </div>#}
+{#                           <p class="quote">تیلور یک طراح حرفه‌ای است که با ارائه خدمات  حرفه اش واقعاً به تجارت من کمک کرد ارزش به کسب و کار من بخشید</p>#}
+{#                           <h4 class="name">براندون فراستر</h4>#}
+{#                           <span class="designation">توسعه دهنده ارشد نرم افزار، Cosmic Sport</span>#}
+{#                        </div>#}
+{#                        <div class="testimonial-item">#}
+{#                           <div class="top-area d-flex flex-wrap justify-content-between">#}
+{#                              <div class="logo-box">#}
+{#                                 <img src="assets/img/testimonials/logo/2.png" alt="">#}
+{#                              </div>#}
+{#                              <div class="image-box">#}
+{#                                 <img src="assets/img/testimonials/user/2.jpg" alt="">#}
+{#                              </div>#}
+{#                           </div>#}
+{#                           <div class="icon-box">#}
+{#                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">#}
+{#                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_514)"></path>#}
+{#                                 <defs>#}
+{#                                    <lineargradient id="paint0_linear_263_514" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">#}
+{#                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>#}
+{#                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>#}
+{#                                    </lineargradient>#}
+{#                                 </defs>#}
+{#                              </svg>#}
+{#                              <svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">#}
+{#                                 <path d="M0.105431 2.18998C0.0301532 0.988687 1.02531 -0.00647222 2.2266 0.0688056L19.4961 1.15097C21.2148 1.25867 22.0029 3.34358 20.7852 4.56127L4.5979 20.7486C3.3802 21.9663 1.2953 21.1781 1.1876 19.4594L0.105431 2.18998Z" fill="url(#paint0_linear_263_515)"></path>#}
+{#                                 <defs>#}
+{#                                    <lineargradient id="paint0_linear_263_515" x1="-0.0363755" y1="-0.0729998" x2="35.3333" y2="-0.0729991" gradientunits="userSpaceOnUse">#}
+{#                                       <stop offset="1" stop-color="var(--tj-theme-primary)"></stop>#}
+{#                                       <stop offset="1" stop-color="#140C1C" stop-opacity="0"></stop>#}
+{#                                    </lineargradient>#}
+{#                                 </defs>#}
+{#                              </svg>#}
+{#                           </div>#}
+{#                           <p class="quote">تیلور یک طراح حرفه‌ای است که با ارائه خدمات  حرفه اش واقعاً به تجارت من کمک کرد ارزش به کسب و کار من بخشید</p>#}
+{#                           <h4 class="name">تام پیکر</h4>#}
+{#                           <span class="designation">متخصص SEO، Theme Junction</span>#}
+{#                        </div>#}
+{#                     </div>#}
+{#                  </div>#}
+{#               </div>#}
+{#            </div>#}
+{#         </div>#}
+{#      </section>#}
+{#      <!-- TESTIMONIAL SECTION END -->#}
 
       <!-- BLOG SECTION STAR -->
       <section class="blog-section" id="blog-section">
@@ -1181,7 +1171,7 @@
                   </nav>
                </div>
                <div class="copy-text">
-                  <p>&copy; تمامی حقوق این سایت  <a href="#" target="_blank">محفوظ میباشد</a></p>
+                  <p>&copy; تمامی حقوق این سایت  <a href="#" target="_blank">متعلق به رامین باروتچیان می باشد</a></p>
                </div>
             </div>
          </div>

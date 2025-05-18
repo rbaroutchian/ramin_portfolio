@@ -13,6 +13,7 @@ class User(AbstractUser):
     mobile_number = models.CharField(max_length=11, verbose_name='شماره تماس')
     birthday = models.DateField(blank=True, null=True, verbose_name='تاریخ تولد')
     is_main_setting = models.BooleanField(default=False,verbose_name='تنظیمات اصلی')
+    resume = models.FileField(upload_to= 'media',blank=True, null=True, verbose_name='فایل رزومه' )
 
 
     class Meta:
@@ -62,6 +63,7 @@ class Work_Resume(models.Model):
     wr_start_date = models.DateField(blank=True, null=True, verbose_name='تاریخ شروع به کار')
     wr_end_date = models.DateField(blank=True, null=True, verbose_name='تاریخ پایان کار')
     wr_task = models.CharField(max_length=300, verbose_name='وظایف و دستاوردها')
+
 
 
     class Meta:

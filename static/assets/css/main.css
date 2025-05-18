@@ -578,15 +578,14 @@ body.loaded {
 .preloader .preloader-heading .load-text {
 	font-size: 70px;
 	font-weight: 200;
-  	font-family: 'B Shiraz';
 	letter-spacing: 0px;
 	text-transform: uppercase;
 	z-index: 20;
 }
 
 .load-text span {
-	-webkit-animation: loading 5s ease-out forwards;
-	animation: loading 5s ease-out forwards;
+	-webkit-animation: loading 1s infinite alternate;
+	animation: loading 1s infinite alternate;
 }
 
 .load-text span:nth-child(1) {
