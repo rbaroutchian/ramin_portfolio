@@ -624,9 +624,9 @@
 
                   <div class="resume-widget">
                      <div class="resume-item wow fadeInRight" data-wow-delay=".5s">
-                        <div class="time">2020 - 2023</div>
-                        <h3 class="resume-title">دوره برنامه نویسی</h3>
-                        <div class="institute">دانشگاه هاروارد</div>
+                        <div class="time">1389 - 1393</div>
+                        <h3 class="resume-title">کارشناسی فناوری اطلاعات</h3>
+                        <div class="institute">دانشگاه طبری</div>
                      </div>
 
                   </div>
@@ -1024,42 +1024,43 @@
                      </div>
 
                      <div class="tj-contact-form">
-                        <form id="contact-form">
+                        <form id="contact-form" class="needs-validation mb-3" action="{% url 'contact' %}" method="post">
+                        {% csrf_token %}
                            <div class="row gx-3">
                               <div class="col-sm-6">
                                  <div class="form_group">
-                                    <input type="text" name="conName" id="conName" placeholder="نام" autocomplete="off">
+                                    <input type="text" name="first_name" id="conName" placeholder="نام" autocomplete="off">
                                  </div>
                               </div>
                               <div class="col-sm-6">
                                  <div class="form_group">
-                                    <input type="text" name="conLName" id="conLName" placeholder="نام خانوادگی" autocomplete="off">
+                                    <input type="text" name="last_name" id="conLName" placeholder="نام خانوادگی" autocomplete="off">
                                  </div>
                               </div>
                               <div class="col-sm-6">
                                  <div class="form_group">
-                                    <input type="email" name="conEmail" id="conEmail" placeholder="ایمیل" autocomplete="off">
+                                    <input type="email" name="email" id="conEmail" placeholder="ایمیل" autocomplete="off">
                                  </div>
                               </div>
                               <div class="col-sm-6">
                                  <div class="form_group">
-                                    <input type="tel" name="conPhone" id="conPhone" placeholder="شماره تماس" autocomplete="off">
+                                    <input type="tel" name="mobile_number" id="conPhone" placeholder="شماره تماس" autocomplete="off">
                                  </div>
                               </div>
                               <div class="col-12">
                                  <div class="form_group">
-                                    <select name="conService" id="conService" class="tj-nice-select">
+                                    <select name="services" id="conService" class="tj-nice-select">
                                        <option value="" selected="" disabled="">نوع خدمات</option>
-                                       <option value="braning">طراحی برندینگ</option>
-                                       <option value="web">طراحی سایت</option>
-                                       <option value="uxui">طراحی /UX</option>
-                                       <option value="app">طراحی اپلیکیشن</option>
+                                        {% for service in services %}
+                                       <option value="{{ service.id }}">{{ service.title}}</option>
+                                        {% endfor %}
+                                       
                                     </select>
                                  </div>
                               </div>
                               <div class="col-12">
                                  <div class="form_group">
-                                    <textarea name="conMessage" id="conMessage" placeholder="متن"></textarea>
+                                    <textarea name="message" id="conMessage" placeholder="متن"></textarea>
                                  </div>
                               </div>
                               <div class="col-12">
@@ -1110,44 +1111,51 @@
          </div>
       </section>
       <!-- CONTACT SECTION END -->
+   
+   <div id="form-success-message" style="display:none; color:green; margin-top:10px;">
+   پیام با موفقیت ارسال شد.
+</div>
+<div id="form-error-message" style="display:none; color:red; margin-top:10px;">
+   ارسال پیام با خطا مواجه شد.
+</div>
 
-      <!-- BEGIN: Contact Form Success Modal Message -->
-      <div class="modal contact_modal" id="message_sent" tabindex="-1">
-         <div class="modal-dialog">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <span class="modal-title"><strong>پیام شما با موفقیت ارسال شد</strong></span>
-                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
-               </div>
-               <div class="modal-body">
-                  <p>از اینکه با ما تماس گرفتید، متشکریم. ما به زودی با شما تماس خواهیم گرفت.<br>روز خوبی داشته باشید!</p>
-               </div>
-               <div class="modal-footer">
-                  <button type="button" class="btn" data-bs-dismiss="modal">بستن</button>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- END: Contact Form Success Modal Message -->
-
-      <!-- BEGIN: Contact Form Fail Modal Message -->
-      <div class="modal contact_modal failed" id="message_fail" tabindex="-1">
-         <div class="modal-dialog">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <span class="modal-title"><strong>اخطار</strong></span>
-                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
-               </div>
-               <div class="modal-body">
-                  <p>اشتباهی رخ داده لطفا دوباره تلاش کنید.</p>
-               </div>
-               <div class="modal-footer">
-                  <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- END: Contact Form Fail Modal Message End -->
+{#      <!-- BEGIN: Contact Form Success Modal Message -->#}
+{#      <div class="modal contact_modal" id="message_sent" tabindex="-1">#}
+{#         <div class="modal-dialog">#}
+{#            <div class="modal-content">#}
+{#               <div class="modal-header">#}
+{#                  <span class="modal-title"><strong>پیام شما با موفقیت ارسال شد</strong></span>#}
+{#                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>#}
+{#               </div>#}
+{#               <div class="modal-body">#}
+{#                  <p>از اینکه با ما تماس گرفتید، متشکریم. ما به زودی با شما تماس خواهیم گرفت.<br>روز خوبی داشته باشید!</p>#}
+{#               </div>#}
+{#               <div class="modal-footer">#}
+{#                  <button type="button" class="btn" data-bs-dismiss="modal">بستن</button>#}
+{#               </div>#}
+{#            </div>#}
+{#         </div>#}
+{#      </div>#}
+{#      <!-- END: Contact Form Success Modal Message -->#}
+{##}
+{#      <!-- BEGIN: Contact Form Fail Modal Message -->#}
+{#      <div class="modal contact_modal failed" id="message_fail" tabindex="-1">#}
+{#         <div class="modal-dialog">#}
+{#            <div class="modal-content">#}
+{#               <div class="modal-header">#}
+{#                  <span class="modal-title"><strong>اخطار</strong></span>#}
+{#                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>#}
+{#               </div>#}
+{#               <div class="modal-body">#}
+{#                  <p>اشتباهی رخ داده لطفا دوباره تلاش کنید.</p>#}
+{#               </div>#}
+{#               <div class="modal-footer">#}
+{#                  <button type="button" class="btn" data-bs-dismiss="modal">Close</button>#}
+{#               </div>#}
+{#            </div>#}
+{#         </div>#}
+{#      </div>#}
+{#      <!-- END: Contact Form Fail Modal Message End -->#}
    </main>
 
    <!-- FOOTER AREA START -->

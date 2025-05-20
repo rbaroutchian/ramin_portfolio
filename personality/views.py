@@ -1,6 +1,11 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView
-from .models import User, Projects, Services, Work_Resume
+from django.http import JsonResponse
+from django.shortcuts import render, redirect
+from django.views.decorators.http import require_POST
+from django.views.generic import TemplateView, CreateView
+from django.urls import reverse
+
+from .forms import ContactForm
+from .models import User, Projects, Services, Work_Resume, Contact
 
 
 # Create your views here.
@@ -17,3 +22,27 @@ class home(TemplateView):
         context['services'] = Services.objects.all()
         context['all_resume'] = Work_Resume.objects.all()
         return context
+
+
+class contactView(CreateView):
+    form_class = ContactForm
+    template_name = 'base.html'
+    success_url = '/contact/'
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({
+                "status": "success",
+                "message": "پیام شما با موفقیت ارسال شد!"
+            })
+        return response
+
+    def form_invalid(self, form):
+        if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({
+                "status": "error",
+                "message": "لطفاً تمام فیلدها را به درستی پر کنید."
+            }, status=400)
+        return super().form_invalid(form)
+

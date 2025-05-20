@@ -72,3 +72,21 @@ class Work_Resume(models.Model):
 
     def __str__(self):
         return self.wr_title
+
+class Contact(models.Model):
+    first_name = models.CharField(max_length=300, verbose_name='نام')
+    last_name = models.CharField(max_length=300, verbose_name='نام خانوادگی')
+    email = models.EmailField(verbose_name='ایمیل')
+    mobile_number = models.CharField(verbose_name='شماره تماس')
+    services = models.ForeignKey(Services, on_delete=models.CASCADE, related_name='Service', verbose_name='خدمت')
+    message = models.CharField(max_length=500, verbose_name='متن پیام')
+    admin_message = models.TextField(verbose_name='پاسخ ادمین', null=True, blank=True)
+    is_read_admin = models.BooleanField(default=False)
+    created_date = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد پیام')
+
+    def __str__(self):
+        return self.first_name
+
+    class Meta:
+        verbose_name = 'تماس با ما'
+        verbose_name_plural = 'لیست ارتباط با ما'

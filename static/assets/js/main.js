@@ -394,22 +394,22 @@ Description: Gerold - Personal Portfolio HTML5 Template
 		if ($("#contact-form").length > 0) {
 			$("#contact-form").validate({
 				rules: {
-					conName: "required",
-					conEmail: {
+					first_name: "required",
+					email: {
 						required: true,
 						email: true,
 					},
 				},
 
 				messages: {
-					conName: "نام خود را وارد کنید",
-					conEmail: "ایمیل معتبر وارد نمایید",
+					first_name: "نام خود را وارد کنید",
+					email: "ایمیل معتبر وارد نمایید",
 				},
 				submitHandler: function (form) {
 					// start ajax request
 					$.ajax({
 						type: "POST",
-						url: "assets/mail/contact-form.php",
+						url: "/contact/",
 						data: $("#contact-form").serialize(),
 						cache: false,
 						success: function (data) {

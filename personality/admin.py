@@ -15,6 +15,10 @@ class ProjectsAdmin(admin.ModelAdmin):
     list_display = ['project_title', 'project_category', 'customer']
 
 
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ['first_name', 'message']
+
+
 class Work_Resume_Admin(admin.ModelAdmin):
     list_display = ['wr_title','wr_title']
 
@@ -23,3 +27,4 @@ admin.site.register(models.User, UserAdmin)
 admin.site.register(models.Services, ServicesAdmin)
 admin.site.register(models.Projects, ProjectsAdmin)
 admin.site.register(models.Work_Resume, Work_Resume_Admin)
+admin.site.register(models.Contact, ContactAdmin)
