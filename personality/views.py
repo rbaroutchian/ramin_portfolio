@@ -1,7 +1,7 @@
 from django.http import JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, DetailView
 from django.urls import reverse
 
 from .forms import ContactForm
@@ -46,3 +46,8 @@ class contactView(CreateView):
             }, status=400)
         return super().form_invalid(form)
 
+
+def service_popup(request, pk):
+    service = get_object_or_404(Services, pk=pk)
+    print("SERVICE TITLE:", service.title)
+    return render(request, 'partial/single_service.html', {'service': service})

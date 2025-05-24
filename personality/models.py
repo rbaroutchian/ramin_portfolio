@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse
+
+
 # Create your models here.
 
 
@@ -26,9 +29,11 @@ class User(AbstractUser):
 class Services(models.Model):
     title = models.CharField(max_length=300, verbose_name='عنوان خدمت')
     short_description = models.CharField(max_length=300, verbose_name='توضیحات کوتاه')
-    description = models.CharField(max_length=500, verbose_name='توضیحات')
+    description = models.TextField(verbose_name='توضیحات')
     service_image = models.ImageField(upload_to='media', blank=True, null=True, verbose_name='تصویر خدمت')
 
+    # def get_absolute_url(self):
+    #     return reverse('service_detail', args=[self.id])
 
     class Meta:
         verbose_name = 'خدمت'
@@ -36,6 +41,8 @@ class Services(models.Model):
 
     def __str__(self):
         return self.title
+
+
 
 class Projects(models.Model):
     project_title = models.CharField(max_length=300, verbose_name='عنوان پروژه')

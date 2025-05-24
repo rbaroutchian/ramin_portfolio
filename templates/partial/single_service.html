@@ -1,0 +1,99 @@
+ <!-- start: Service Popup -->
+      <div class="popup_content_area zoom-anim-dialog">
+         <div class="popup_modal_img">
+             {% if service.service_image %}
+                <img src="{{ service.service_image.url }}" alt="{{ service.title }}">
+             {% else %}
+                <img src="#" alt="{{ service.title }}">
+             {% endif %}
+         </div>
+
+         <div class="popup_modal_content">
+            <div class="service_details">
+               <div class="row">
+                  <div class="col-lg-7 col-xl-8">
+                     <div class="service_details_content">
+                        <div class="service_info">
+                           <h6 class="subtitle">خدمات</h6>
+                           <h2 class="title" >{{ service.title}} </h2>
+                           <div class="desc">
+                              <p>
+                                {{ service.short_description }}
+                              </p>
+
+                              <p>
+                                  {{service.description|linebreaks}}
+                              </p>
+
+                              <p>
+                                 لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+
+                              </p>
+                           </div>
+
+                           <h3 class="title">فرآیند خدمات</h3>
+                           <div class="desc">
+                              <p>
+                                 لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+
+                              </p>
+                           </div>
+                           <ul>
+                              <li>کسب و کار خود را دوباره شروع و بهتر شوید</li>
+                              <li>پیشگام در اینترنت</li>
+                              <li>پیشگام در دنیای طراحی</li>
+                              <li>پیشگام در دنیای طراحی</li>
+                              <li>پیشگام در دنیای طراحی</li>
+                              <li>پیشگام در دنیای طراحی</li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-5 col-xl-4">
+                     <div class="tj_main_sidebar">
+                        <div class="sidebar_widget services_list">
+                           <div class="widget_title">
+                              <h3 class="title">تمامی خدمات</h3>
+                           </div>
+                           <ul>
+                              <li class="active">
+                                 <button>
+                                    <i class="flaticon-design"></i>
+                                    طراحی برندینگ
+                                 </button>
+                              </li>
+                              <li>
+                                 <button>
+                                    <i class="flaticon-3d-movie"></i>
+                                    انیمیشن سه بعدی
+                                 </button>
+                              </li>
+                              <li>
+                                 <button>
+                                    <i class="flaticon-ux-design"></i>
+                                    طراحی   UI/UX
+                                 </button>
+                              </li>
+                              <li>
+                                 <button>
+                                    <i class="flaticon-web-design"></i>
+                                    طراحی وبسایت
+                                 </button>
+                              </li>
+                              <li>
+                                 <button>
+                                    <i class="flaticon-ui-design"></i>
+                                    طراحی اپکیشن
+                                 </button>
+                              </li>
+                           </ul>
+                        </div>
+
+                        
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end: Service Popup -->

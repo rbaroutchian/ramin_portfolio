@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'personality',
+    'pwa'
 
 ]
 
@@ -146,3 +147,24 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'personality.User'
+
+
+PWA_APP_NAME = 'My Blog'
+PWA_APP_DESCRIPTION = "وب‌اپ بلاگ شخصی رامین"
+PWA_APP_THEME_COLOR = '#3367D6'
+PWA_APP_BACKGROUND_COLOR = '#ffffff'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_START_URL = '/'
+PWA_APP_ICONS = [
+    {
+        'src': '/static/icons/icon-512x512.png',
+        'sizes': '512x512'
+    },
+    {
+        'src': '/static/icons/icon-192x192.png',
+        'sizes': '192x192'
+    }
+]
+PWA_APP_DIR = 'rtl'
+PWA_APP_LANG = 'fa-IR'
