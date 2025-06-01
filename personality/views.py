@@ -49,5 +49,14 @@ class contactView(CreateView):
 
 def service_popup(request, pk):
     service = get_object_or_404(Services, pk=pk)
+    all_services = Services.objects.all()
     print("SERVICE TITLE:", service.title)
-    return render(request, 'partial/single_service.html', {'service': service})
+    return render(request, 'partial/single_service.html',
+                  {'service': service,
+                        'all_services':all_services})
+
+
+def project_popup(request, pk):
+    project = get_object_or_404(Projects, pk=pk)
+    return render(request, 'partial/project_modal_content.html',
+                  {'project': project})

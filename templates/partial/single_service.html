@@ -1,12 +1,12 @@
  <!-- start: Service Popup -->
       <div class="popup_content_area zoom-anim-dialog">
-         <div class="popup_modal_img">
-             {% if service.service_image %}
-                <img src="{{ service.service_image.url }}" alt="{{ service.title }}">
-             {% else %}
-                <img src="#" alt="{{ service.title }}">
-             {% endif %}
-         </div>
+{#         <div class="popup_modal_img">#}
+{#             {% if service.service_image %}#}
+{#                <img src="{{ service.service_image.url }}" alt="{{ service.title }}">#}
+{#             {% else %}#}
+{#                <img src="#" alt="{{ service.title }}">#}
+{#             {% endif %}#}
+{#         </div>#}
 
          <div class="popup_modal_content">
             <div class="service_details">
@@ -56,36 +56,15 @@
                               <h3 class="title">تمامی خدمات</h3>
                            </div>
                            <ul>
+                               {% for ser in all_services %}
                               <li class="active">
                                  <button>
                                     <i class="flaticon-design"></i>
-                                    طراحی برندینگ
+                                     {{ser.title}}    
                                  </button>
                               </li>
-                              <li>
-                                 <button>
-                                    <i class="flaticon-3d-movie"></i>
-                                    انیمیشن سه بعدی
-                                 </button>
-                              </li>
-                              <li>
-                                 <button>
-                                    <i class="flaticon-ux-design"></i>
-                                    طراحی   UI/UX
-                                 </button>
-                              </li>
-                              <li>
-                                 <button>
-                                    <i class="flaticon-web-design"></i>
-                                    طراحی وبسایت
-                                 </button>
-                              </li>
-                              <li>
-                                 <button>
-                                    <i class="flaticon-ui-design"></i>
-                                    طراحی اپکیشن
-                                 </button>
-                              </li>
+                               {% endfor %}
+                              
                            </ul>
                         </div>
 
