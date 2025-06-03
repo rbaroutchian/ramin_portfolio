@@ -577,9 +577,10 @@ body.loaded {
 
 .preloader .preloader-heading .load-text {
 	font-size: 70px;
+	text-align: center;
 	font-weight: 200;
 	letter-spacing: 0px;
-	text-transform: uppercase;
+	text-transform: none;
 	z-index: 20;
 }
 

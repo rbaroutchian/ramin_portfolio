@@ -31,10 +31,11 @@ class contactView(CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
+        instance = form.save()
         if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
             return JsonResponse({
                 "status": "success",
-                "message": "پیام شما با موفقیت ارسال شد!"
+                "message": f"{instance.first_name} عزیز، پیام شما با موفقیت ارسال شد!"
             })
         return response
 

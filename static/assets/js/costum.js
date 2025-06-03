@@ -17,10 +17,11 @@ $(document).ready(function () {
             success: function (response) {
                 Swal.fire({
                     title: "موفق!",
-                    text: "پیام شما با موفقیت ارسال شد.",
+                    text: response.message,
                     icon: "success",
                     confirmButtonText: "باشه"
                 });
+                $("#contact-form")[0].reset();
             },
             error: function () {
                 Swal.fire({
